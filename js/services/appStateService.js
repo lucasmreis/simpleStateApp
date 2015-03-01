@@ -1,7 +1,7 @@
 angular.module('simpleStateApp').factory('AppStateService', function(StateService) {
   var state = {
-    foos: [],
-    bars: []
+    foos: [1, 2, 3],
+    bars: ['a', 'b', 'c']
   };
 
   var listeners = [];

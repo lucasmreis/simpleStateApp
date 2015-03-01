@@ -3,12 +3,60 @@
   <head>
     <title>Simple State App</title>
   </head>
-  <body>
-    <div>"Foo" form</div>
-    <div>First "Bar" form</div>
-    <div>Second "Bar" form</div>
-    <div>The State</div>
-    <script src="bower_components/angular/angular.min.js"></script>
+  <body ng-app="simpleStateApp">
+    <div ng-controller="FooCtrl as c">
+      <h3>"Foo" form</h3>
+      <p>
+        New Foo: <input type="text" ng-model="c.form.newFoo">
+        <button ng-click="c.addFoo(c.state, c.form)">Add Foo</button>
+      </p>
+    </div>
+
+    <hr>
+
+    <div ng-controller="BarCtrl as c">
+      <h3>First "Bar" form</h3>
+      <p>
+        New Bar: <input type="text" ng-model="c.form.newBar">
+        <button ng-click="c.addBar(c.state, c.form)" ng-disabled="c.cannotAddBar(c.state)">Add Bar</button>
+      </p>
+    </div>
+
+    <hr>
+
+    <div ng-controller="BarCtrl as c">
+    <h3>Second "Bar" form</h3>
+      <p>
+        New Bar: <input type="text" ng-model="c.form.newBar">
+        <button ng-click="c.addBar(c.state, c.form)" ng-disabled="c.cannotAddBar(c.state)">Add Bar</button>
+      </p>
+    </div>
+    
+    <hr>
+
+    <div ng-controller="ReadOnlyCtrl as c">
+      <h3>Read Only Controller</h3>
+      <p>
+        Foos:
+        <ul>
+          <li ng-repeat="foo in c.state.foos">{{ foo }}</li>
+        </ul>
+      </p>
+      <p>
+        Bars: 
+        <ul>
+          <li ng-repeat="bar in c.state.bars">{{ bar }}</li>
+        </ul>
+      </p>
+    </div>
+    <script src="node_modules/ramda/dist/ramda.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+
     <script src="js/app.js"></script>
+    <script src="js/services/stateService.js"></script>
+    <script src="js/services/appStateService.js"></script>
+    <script src="js/controllers/readOnlyController.js"></script>
+    <script src="js/controllers/fooController.js"></script>
+    <script src="js/controllers/barController.js"></script>
   </body>
 </html>
