@@ -1,5 +1,7 @@
-angular.module('simpleStateApp', []);
-  // .run(function(TodoStateService, StorageService) {
-  //   TodoStateService.change('todos', StorageService.loadTodos());
-  //   TodoStateService.listen('todos', StorageService.saveTodos);
-  // });
+angular.module('simpleStateApp', []).run(function(AppStateService, StorageService) {
+    AppStateService.change('foos', StorageService.load('foos'));
+    AppStateService.change('bars', StorageService.load('bars'));
+
+    AppStateService.listen('foos', StorageService.save('foos'));
+    AppStateService.listen('bars', StorageService.save('bars'));
+  });

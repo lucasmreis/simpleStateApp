@@ -31,7 +31,7 @@
         <button ng-click="c.addBar(c.state, c.form)" ng-disabled="c.cannotAddBar(c.state)">Add Bar</button>
       </p>
     </div>
-    
+
     <hr>
 
     <div ng-controller="ReadOnlyCtrl as c">
@@ -49,14 +49,18 @@
         </ul>
       </p>
     </div>
+
     <script src="node_modules/ramda/dist/ramda.js"></script>
     <script src="node_modules/angular/angular.js"></script>
 
     <script src="js/app.js"></script>
     <script src="js/services/stateService.js"></script>
     <script src="js/services/appStateService.js"></script>
+    <script src="js/services/storageService.js"></script>
+
     <script src="js/controllers/readOnlyController.js"></script>
     <script src="js/controllers/fooController.js"></script>
     <script src="js/controllers/barController.js"></script>
+
   </body>
 </html>
