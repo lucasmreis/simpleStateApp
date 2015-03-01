@@ -2,7 +2,6 @@ angular.module('simpleStateApp').factory('StorageService', function() {
   var curry = R.curry;
 
   var save = curry(function(prop, items) {
-    console.log('ENTREI');
     window.localStorage.setItem('simple-app-' + prop, JSON.stringify(items));
     return items;
   });
