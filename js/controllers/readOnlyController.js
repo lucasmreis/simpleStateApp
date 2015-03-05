@@ -1,8 +1,9 @@
 angular.module('simpleStateApp').controller('ReadOnlyCtrl', function(AppStateService) {
-  var state = {};
-
-  AppStateService.listen('foos', function(f) { state.foos = f; });
-  AppStateService.listen('bars', function(b) { state.bars = b; });
+  
+  var state = {
+    get foos() { return AppStateService.select('foos').get(); },
+    get bars() { return AppStateService.select('bars').get(); }
+  };
 
   this.state = state;
 });

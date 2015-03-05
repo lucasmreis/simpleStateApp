@@ -1,0 +1,21 @@
+{
+  "name": "simpleStateApp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lucasmreis/simpleStateApp",
+  "description": "Simple app to illustrate the state handling proposal of the blog.",
+  "main": "app.js",
+  "authors": [
+    "Lucas Reis"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "baobab": "~0.3.2"
+  }
+}

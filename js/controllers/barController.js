@@ -11,33 +11,33 @@ angular.module('simpleStateApp').controller('BarCtrl', function(AppStateService)
     newBar: ''
   };
 
-  AppStateService.listen('bars', function(b) { state.bars = b; });
-  AppStateService.listen('foos', function(f) { state.foos = f; });
+  // AppStateService.listen('bars', function(b) { state.bars = b; });
+  // AppStateService.listen('foos', function(f) { state.foos = f; });
 
-  var changeBars = AppStateService.change('bars');
-  var changeFoos = AppStateService.change('foos');
+  // var changeBars = AppStateService.change('bars');
+  // var changeFoos = AppStateService.change('foos');
 
-  var addBar = function(state, form) {
-    return compose(
-      changeBars,
-      append(form.newBar),
-      get('bars')
-      )(state);
-  };
+  // var addBar = function(state, form) {
+  //   return compose(
+  //     changeBars,
+  //     append(form.newBar),
+  //     get('bars')
+  //     )(state);
+  // };
 
-  var cannotAddBar = compose(
-    not(contains('requiredFoo')),
-    get('foos'));
+  // var cannotAddBar = compose(
+  //   not(contains('requiredFoo')),
+  //   get('foos'));
 
-  var clearState = compose(
-    changeBars,
-    changeFoos,
-    K([]))
+  // var clearState = compose(
+  //   changeBars,
+  //   changeFoos,
+  //   K([]))
 
   this.state = state;
   this.form = form;
 
-  this.addBar = addBar;
-  this.cannotAddBar = cannotAddBar;
-  this.clearState = clearState;
+  // this.addBar = addBar;
+  // this.cannotAddBar = cannotAddBar;
+  // this.clearState = clearState;
 });
