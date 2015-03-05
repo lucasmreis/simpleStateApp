@@ -4,6 +4,7 @@ angular.module('simpleStateApp').controller('BarCtrl', function(AppStateService)
   var get = R.get;
   var contains = R.contains;
   var not = R.not;
+  var K = R.always;
 
   var state = {};
   var form = {
@@ -14,6 +15,7 @@ angular.module('simpleStateApp').controller('BarCtrl', function(AppStateService)
   AppStateService.listen('foos', function(f) { state.foos = f; });
 
   var changeBars = AppStateService.change('bars');
+  var changeFoos = AppStateService.change('foos');
 
   var addBar = function(state, form) {
     return compose(
@@ -23,15 +25,19 @@ angular.module('simpleStateApp').controller('BarCtrl', function(AppStateService)
       )(state);
   };
 
-  function log(x) { return function(y) { console.log(x, y); return y; }; };
-
   var cannotAddBar = compose(
     not(contains('requiredFoo')),
     get('foos'));
+
+  var clearState = compose(
+    changeBars,
+    changeFoos,
+    K([]))
 
   this.state = state;
   this.form = form;
 
   this.addBar = addBar;
   this.cannotAddBar = cannotAddBar;
+  this.clearState = clearState;
 });

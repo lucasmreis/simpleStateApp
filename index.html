@@ -4,8 +4,27 @@
     <title>Simple State App</title>
   </head>
   <body ng-app="simpleStateApp">
+    <h2>Unique State Illustration</h2>
+    
+    <p>
+      This example illustrates the idea of having your whole State on one place, described in the post <a href="http://lucasmreis.github.io/blog/a-more-functional-approach-to-angular/">A more functional approach to Angular</a>.
+    </p>
+
+    <p>
+      In this application the State is represented by a map, with two properties: foos and bars. Both are arrays of string.
+    </p>
+
+    <p>
+      One '.run' module listens to all changes in the State, and stores it in local storage. Every time you come back to this page, the State is going to be loaded back from local storage.
+    </p>
+
+    <hr>
+
     <div ng-controller="FooCtrl as c">
       <h3>"Foo" form</h3>
+      <p>
+        By clicking "Add Foo", one adds a string to the foos array.
+      </p>
       <p>
         New Foo: <input type="text" ng-model="c.form.newFoo">
         <button ng-click="c.addFoo(c.state, c.form)">Add Foo</button>
@@ -17,6 +36,9 @@
     <div ng-controller="BarCtrl as c">
       <h3>First "Bar" form</h3>
       <p>
+        To be able to add a string to bars, add the string 'requiredFoo' to foos.
+      </p>
+      <p>
         New Bar: <input type="text" ng-model="c.form.newBar">
         <button ng-click="c.addBar(c.state, c.form)" ng-disabled="c.cannotAddBar(c.state)">Add Bar</button>
       </p>
@@ -27,8 +49,14 @@
     <div ng-controller="BarCtrl as c">
     <h3>Second "Bar" form</h3>
       <p>
+        Another form using the same bar controller.
+      </p>
+      <p>
         New Bar: <input type="text" ng-model="c.form.newBar">
         <button ng-click="c.addBar(c.state, c.form)" ng-disabled="c.cannotAddBar(c.state)">Add Bar</button>
+      </p>
+      <p>
+        Click <a href="" ng-click="c.clearState()">here to clear the State</a>.
       </p>
     </div>
 
