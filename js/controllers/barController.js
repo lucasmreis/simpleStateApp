@@ -1,43 +1,45 @@
-angular.module('simpleStateApp').controller('BarCtrl', function(AppStateService) {
+angular.module('simpleStateApp').controller('BarCtrl', function(AppStateService, PointfreeBaobab) {
   var compose = R.compose;
-  var append = R.append;
   var get = R.get;
-  var contains = R.contains;
   var not = R.not;
-  var K = R.always;
+  var contains = R.contains;
+  var push = PointfreeBaobab.push;
+  var edit = PointfreeBaobab.edit;
 
-  var state = {};
+  var foosCursor = AppStateService.select('foos');
+  var barsCursor = AppStateService.select('bars');
+
+  var state = AppStateService.get();
+
   var form = {
     newBar: ''
   };
 
-  // AppStateService.listen('bars', function(b) { state.bars = b; });
-  // AppStateService.listen('foos', function(f) { state.foos = f; });
+  foosCursor.on('update', 
+    function() { state.foos = foosCursor.get(); });
 
-  // var changeBars = AppStateService.change('bars');
-  // var changeFoos = AppStateService.change('foos');
+  barsCursor.on('update', 
+    function() { state.bars = barsCursor.get(); });
 
-  // var addBar = function(state, form) {
-  //   return compose(
-  //     changeBars,
-  //     append(form.newBar),
-  //     get('bars')
-  //     )(state);
-  // };
+  var addBar = compose(
+    push(barsCursor),
+    get('newBar'));
 
-  // var cannotAddBar = compose(
-  //   not(contains('requiredFoo')),
-  //   get('foos'));
+  var cannotAddBar = compose(
+    not(contains('requiredFoo')),
+    get('foos'));
 
-  // var clearState = compose(
-  //   changeBars,
-  //   changeFoos,
-  //   K([]))
+  var clearState = function() {
+    compose(
+      edit(barsCursor),
+      edit(foosCursor)
+    )([]);
+  };
 
   this.state = state;
   this.form = form;
 
-  // this.addBar = addBar;
-  // this.cannotAddBar = cannotAddBar;
-  // this.clearState = clearState;
+  this.addBar = addBar;
+  this.cannotAddBar = cannotAddBar;
+  this.clearState = clearState;
 });

@@ -40,7 +40,7 @@
       </p>
       <p>
         New Bar: <input type="text" ng-model="c.form.newBar">
-        <button ng-click="c.addBar(c.state, c.form)" ng-disabled="c.cannotAddBar(c.state)">Add Bar</button>
+        <button ng-click="c.addBar(c.form)" ng-disabled="c.cannotAddBar(c.state)">Add Bar</button>
       </p>
     </div>
 
@@ -53,7 +53,7 @@
       </p>
       <p>
         New Bar: <input type="text" ng-model="c.form.newBar">
-        <button ng-click="c.addBar(c.state, c.form)" ng-disabled="c.cannotAddBar(c.state)">Add Bar</button>
+        <button ng-click="c.addBar(c.form)" ng-disabled="c.cannotAddBar(c.state)">Add Bar</button>
       </p>
       <p>
         Click <a href="" ng-click="c.clearState()">here to clear the State</a>.
@@ -84,7 +84,7 @@
     <script src="bower_components/baobab/build/baobab.min.js"></script>
 
     <script src="js/app.js"></script>
-    <script src="js/services/stateService.js"></script>
+    <script src="js/services/pointfreeBaobab.js"></script>
     <script src="js/services/appStateService.js"></script>
     <script src="js/services/storageService.js"></script>
 

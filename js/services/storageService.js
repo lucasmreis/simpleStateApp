@@ -14,5 +14,5 @@ angular.module('simpleStateApp').factory('StorageService', function() {
   return {
     save: save,
     load: load
-  }
+  };
 });

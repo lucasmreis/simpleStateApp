@@ -1,8 +1,8 @@
-angular.module('simpleStateApp').factory('AppStateService', function(StateService) {
-  var state = new Baobab({
-    foos: [1, 2, 3],
-    bars: ['a', 'b', 'c']
-  });
-  
+angular.module('simpleStateApp').factory('AppStateService', function(StorageService) {
+  var state = new Baobab(
+    StorageService.load('baobab'),
+    { asynchronous: false }
+  );
+
   return state;
 });

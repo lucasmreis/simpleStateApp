@@ -1,27 +1,27 @@
-angular.module('simpleStateApp').controller('FooCtrl', function(AppStateService) {
+angular.module('simpleStateApp').controller('FooCtrl', function(AppStateService, PointfreeBaobab) {
   var compose = R.compose;
-  var append = R.append;
   var get = R.get;
-  var curry = R.curry;
+  var push = PointfreeBaobab.push;
 
   var foosCursor = AppStateService.select('foos');
 
-  var state = {
-    get foos() { return foosCursor.get(); }
+  var state = { 
+    foos: foosCursor.get()
   };
 
   var form = {
     newFoo: ''
   };
 
-  var addFoo = function(form) {
-    return foosCursor.push(form.newFoo);
-  };
+  foosCursor.on('update', 
+    function() { state.foos = foosCursor.get() });
+
+  var addFoo = compose(
+    push(foosCursor),
+    get('newFoo'));
 
   this.state = state;
   this.form = form;
-
-  this.addFoo = addFoo;
 
   this.addFoo = addFoo;
 });
