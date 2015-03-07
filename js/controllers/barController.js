@@ -36,10 +36,17 @@ angular.module('simpleStateApp').controller('BarCtrl', function(AppStateService,
     )([]);
   };
 
+  var undo = function() { 
+    if (AppStateService.hasHistory()) { 
+      AppStateService.undo(); 
+    }
+  };
+
   this.state = state;
   this.form = form;
 
   this.addBar = addBar;
   this.cannotAddBar = cannotAddBar;
   this.clearState = clearState;
+  this.undo = undo;
 });
