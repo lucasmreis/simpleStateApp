@@ -1,10 +1,4 @@
 angular.module('simpleStateApp').controller('BarCtrl', function(AppStateService) {
-  var compose = R.compose;
-  var append = R.append;
-  var get = R.get;
-  var contains = R.contains;
-  var not = R.not;
-  var K = R.always;
 
   var state = {};
   var form = {
@@ -18,21 +12,19 @@ angular.module('simpleStateApp').controller('BarCtrl', function(AppStateService)
   var changeFoos = AppStateService.change('foos');
 
   var addBar = function(state, form) {
-    return compose(
-      changeBars,
-      append(form.newBar),
-      get('bars')
-      )(state);
+    var newBars =
+      R.append(form.newBar, state.bars);
+    changeFoos(newBars);
   };
 
-  var cannotAddBar = compose(
-    not(contains('requiredFoo')),
-    get('foos'));
+  var cannotAddBar = function(state) {
+    return state.foos.indexOf('requiredFoo') === -1;
+  };
 
-  var clearState = compose(
-    changeBars,
-    changeFoos,
-    K([]))
+  var clearState = function() {
+    changeFoos([]);
+    changeBars([]);
+  };
 
   this.state = state;
   this.form = form;
