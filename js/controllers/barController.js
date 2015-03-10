@@ -14,7 +14,7 @@ angular.module('simpleStateApp').controller('BarCtrl', function(AppStateService)
   var addBar = function(state, form) {
     var newBars =
       R.append(form.newBar, state.bars);
-    changeFoos(newBars);
+    changeBars(newBars);
   };
 
   var cannotAddBar = function(state) {
